@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://bvtrcpotdlrif"]
+
+[ext_resource type="Texture2D" uid="uid://kp4rec8vvrx" path="res://assets/Cloak/IDLE.png" id="1_nu6m3"]
+[ext_resource type="Script" path="res://player.gd" id="1_yu4bv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a1j8s"]
+atlas = ExtResource("1_nu6m3")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cyusj"]
+atlas = ExtResource("1_nu6m3")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_36gvl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a1j8s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cyusj")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 3.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rrla3"]
+custom_solver_bias = 0.094
+radius = 6.0
+height = 28.0
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+position = Vector2(4, -3)
+script = ExtResource("1_yu4bv")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(604, 308)
+sprite_frames = SubResource("SpriteFrames_36gvl")
+animation = &"idle"
+frame_progress = 0.845261
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(603, 311)
+shape = SubResource("CapsuleShape2D_rrla3")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
